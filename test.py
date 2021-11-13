@@ -71,11 +71,12 @@ def test_stopwords():
                              '지금은 2021년 11월이다.')[0]
     stopwords = Stopwords()
     print(set(tokens) - set(stopwords.filter(tokens)))
-    stopwords = Stopwords(f'{os.path.abspath(os.path.join(curpath, ".."))}/custom_stopwords.txt')
+    filename = curpath + '/test_corpus/custom_stopwords.txt'
+    stopwords = Stopwords(filename)
 
     stopwords.add(('강아지', 'NNP'))
-    assert (('강아지', 'NNP') in stopwords.words()) == True
+    assert (('강아지', 'NNP') in stopwords) == True
 
     stopwords.remove(('강아지', 'NNP'))
-    assert (('강아지', 'NNP') in stopwords.words()) == False
+    assert (('강아지', 'NNP') in stopwords) == False
     print(set(tokens) - set(stopwords.filter(tokens)))
